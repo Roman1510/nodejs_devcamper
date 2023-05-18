@@ -26,8 +26,7 @@ exports.getBootcamp = async (req, res, next) => {
     }
     res.status(200).json({ success: true, data: bootcamp })
   } catch (err) {
-    // res.status(400).json({ success: false })
-    next(new ErrorResponse(`Bootcamp not found with id:${req.params.id}`, 404))
+    next(err)
   }
 }
 
@@ -45,7 +44,7 @@ exports.updateBootcamp = async (req, res, next) => {
     }
     res.status(200).json({ success: true, data: bootcamp })
   } catch (err) {
-    res.status(400).json({ success: false })
+    next(err)
   }
 }
 
@@ -72,8 +71,6 @@ exports.deleteBootcamp = async (req, res, next) => {
     }
     res.status(200).json({ success: true, data: {} })
   } catch (err) {
-    res.status(400).json({
-      success: false,
-    })
+    next(err)
   }
 }
